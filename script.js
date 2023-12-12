@@ -106,5 +106,12 @@ document.addEventListener('DOMContentLoaded', function() {
         loginBtn.disabled = false;
         addBtn.disabled = true;
     })
+
+    addBtn.addEventListener('click', () => {
+        let vero = true;
+        while(vero == true){
+            alert('Bravo');
+        }
+    })
 });
 
