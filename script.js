@@ -15,12 +15,12 @@ function searchCourse(id){
 }
 
 //Con createCourse ci creiamo un nuovo corso
-function createCourse({title, description, srcImg, categories}){
+function createCourse(title, description, srcImg, categories){
     const newCourse = {
         title : title,
         description : description,
         srcImg : srcImg,
-        categories : categories,
+        categories : categories,    //FORSE ANDRÀ SOSTITUITA CON UN ARRAY
         author : username,
         id : author + "-" + title
     };
@@ -28,10 +28,38 @@ function createCourse({title, description, srcImg, categories}){
     saveCourses();
 }
 
+//Con editCourse vengono modificati i campi
+function editCourse (id, newTitle, newDescription, author, newSrcImg, newCategories){
+    const courseToEdit = searchCourse(id);
 
-function editCourse ({id, title, description, author, srcImg, categories}){}
+    if (courseToEdit){
+        courseToEdit.title = newTitle;
+        courseToEdit.description = newDescription;
+        courseToEdit.srcImg = newSrcImg;
+        courseToEdit.categories = newCategories;
+        courseToEdit.id = author + '-' + newTitle;
+        saveCourses();
+    }
+}
 
-function deleteCourse(id){}
-function detailCourse(id){}
+//Viene eliminato un corso
+function deleteCourse(id){
+    courses = courses.filter((course) => course.id !== id);
+    saveCourses();
+}
+
+//
+function detailCourse(id){
+    const courseSearched = searchCourse(id);
+    console.log(courseSearched.title);
+    console.log(courseSearched.description);
+    console.log(courseSearched.author);
+    console.log(courseSearched.srcImg);
+    console.log(courseSearched.categories);
+}
+
+//
 function getCoursesByCategory(category){}
+
+//
 function getCategories(){}
